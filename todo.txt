@@ -1,0 +1,15 @@
+samba
+
+service smb start
+
+getsebool -a | grep samba
+setsebool -P samba_enable_home_dirs on
+setsebool -P samba_domain_controller on
+
+
+mysql 설치
+
+mysql 연동
+python-mysql 관련 라이브러리 설치 필요
+
+
