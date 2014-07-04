@@ -1,0 +1,39 @@
+{% load staticfiles %}
+/* reset.css	*/
+*{margin:0;padding:0;}
+li, dt, dd{list-style-type:none;vertical-align:top;}
+img, a{vertical-align:middle;border:none;}
+h1,h2,h3,h4,h5,h6{font-style:normal;font-size:100%;font-weight:normal;}
+table{border-spacing:0;}
+strong, em, address{font-style:normal; font-weight:normal;}
+textarea, input, select, fieldset{vertical-align:middle; border:none;}
+
+/* common.css	*/
+body{font:12px/1.4 "맑은 고딕","맑은고딕",Malgun Gothic, Arial,Apple SD Gothic Neo, AppleGhothic, Helvetica; color:#767676;background-image:url("{% static 'images/tile00.gif' %}");}
+a{text-decoration:none;color:#767676}
+caption, .hide{position:absolute;left:-99999px;text-indent:-99999px;font-size:0;width:0;height:0;}
+.site_width{width:960px; margin:0 auto;}
+#wrap{background-color:#F1F2F6;}
+
+.txt_r{text-align:right;}
+
+/* header */
+#header{position:relative;height:80px;background-image:url("../images/topbg00.png"); border-bottom:1px solid #fff}
+#header h1{position:absolute; left:25px; top:15px;}
+#header h1 a{font-size:1.8em; font-weight:bold; font_color:#fff}
+
+#util_menu li{float:right; padding:2px 15px 0px}
+#util_menu ul:after{content:"";display:block; clear:both;}
+
+#gnb{position:absolute; right:15px; top:50px;}
+#gnb li{float:left; height:24px; }
+#gnb li>a{display:block; padding:2px 0 0 25px;vertical-align:bottom;}
+#gnb li>a:hover, #gnb li>a:focus{font-weight:bold; font-size:1.2em}
+	#search_f{margin-left:25px; padding:0 2px; height:22px;border:1px solid #3BAFDA; border-radius:5px; background-color:#FFF;}
+	#search_word{height:20px;}
+
+/* footer */
+#footer{position:relative; padding:25px 0; background-color:#555; border-top:5px solid #8caf21;color:#eee;}
+#footer address{margin-right:25px}
+#footer address a{color:#eee;display:inline-block;vertical-align:top;}
+#footer address a:hover, #footer address a:focus{color:#0e0}

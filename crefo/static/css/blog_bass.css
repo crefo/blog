@@ -1,0 +1,21 @@
+@charset"utf-8";
+@import"cnt_box.css";
+
+/* container */
+#container{padding:0;border-top:1px solid #eee;}
+#l_side{float:left;width:736px;padding:5px}
+#r_side{float:left;width:188px;background-color:#bbb; padding: 0 8px}
+#container:after{content:""; display:block; clear:both;}
+
+/* page nav */
+.page_nav{text-align:center;}
+.page_nav a, .page_nav span{padding:0 2px}
+
+#r_side>div{margin:10px 0}
+#profile .img{text-align:center;}
+#profile .img img{width:150px;border:3px solid #339999}
+#profile p{margin:5px 0}
+
+#c_list{margin-bottom:10px}
+#cnt_comment{margin:10px 0}
+#cnt_comment .cnt_box_cnt{border:0px solid #000}

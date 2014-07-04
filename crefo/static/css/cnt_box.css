@@ -1,0 +1,5 @@
+/* box_style */
+.cnt_box_style{}
+.cnt_box_title{position:relative;padding:4px 10px; font-size:1.3em;border-radius:5px 5px 0 0;background-color:#DFF0D8; color:#434A54; letter-spacing:2px;border-bottom:2px solid #339999;}
+.cnt_box_title span{position:absolute; right:0; bottom:2px; font-size:0.6em;}
+.cnt_box_cnt{padding:4px 10px; border-radius:0  0 5px 5px; border:2px solid #339999; border-top:0 solid #339999; background-color:#FFF;}

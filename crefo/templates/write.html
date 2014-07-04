@@ -1,0 +1,13 @@
+<h1>{{page_title}}</h1>
+
+<form method="post" action="/blog/add/post/">{% csrf_token %}
+	<p><label for="title">제목</label><input type="text" id="title" name="title" value="" /></p>
+	<p><label for="category">글타래</label><select name="category" id="category">
+		{% for category in categories %}
+		<option value="{{category.id}}">{{category.title}}</option>
+		{% endfor %}
+	</select></p>
+	<p><label for="tags">글 꼬리표</label><input type="text" id="tags" name="tags" value="" /></p>
+	<p><textarea name="content" id="content" cols="30" rows="10"></textarea></p>
+	<p><input type="submit" value="써넣기" /></p>
+</form>

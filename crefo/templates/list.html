@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>{{page_title}}</title>
+	{% load staticfiles %}
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" href="/media/css/style.css" type="text/css" media="all" />
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+	<script type="text/javascript" src="/media/js/top.js"></script>
+</head>
+
+<body>
+	<h1>{{page_title}}</h1>
+	<div id="content">
+		{% for entry in entries %}
+		<div class="post_entry">
+			<h3 id="post_{{entry.id}}" class="post_title"><a href="/blog/entry/{{entry.id}}">{{entry.title}}</a></h3>
+			<p class="post_info">글 갈래 : [{{entry.category.title}}] / <a href="/blog/entry/{{entry.id}}">{{entry.created}}</a></p>
+			<div class="content_box">{{entry.content}}</div>
+			<ul class="post_meta">
+				<li>꼬리표 : {% for tag in entry.tags.all %}
+					<span>{{tag.title}}</span>
+				{% endfor %}</li>
+				<li><a href="/blog/get/comments/{{entry.id}}/" class="test{{entry.id}}" onclick="toggle_comment_box(this.href, '{{entry.id}}'); return false;">댓글 ({{entry.comments}}) </a></li>
+			</ul>
+			<div id="comment_box_{{entry.id}}" style="display: none;" >test</div>
+		</div>
+		{% endfor %}
+	</div>
+	<div id="sidebar"></div><img src="{% static 'images/3VhWN.gif' %}" alt="test" width="100" />	
+</body>
+
+</html>

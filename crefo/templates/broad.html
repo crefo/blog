@@ -1,0 +1,60 @@
+{% block content %}
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/pagination/style.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/pagination/simplePagination.css' %}" />
+
+<table cellspacing="0" cellpadding="0">
+	<caption class='hide'> {{Keyword}} 목록 보기</caption>
+	<colgroup>
+		<col width="22"/>
+		<col />
+		<col width="50"/>
+		<col width="50"/>
+		<col width="78"/>
+	</colgroup>
+	<thead>
+		<tr>
+			<th scope="col">No.</th>
+			<th scope="col">포스트 제목</th>
+			<th scope="col">Readed</th>
+			<th scope="col">추천</th>
+			<th scope="col">날짜</th>
+		</tr>
+	</thead>
+	<tbody id="broadTable">
+		{% for entrie in broad %}
+		<tr>
+			<td>{{entrie.num}}</td>
+			<td><a href="#" class='{{entrie.id}}'>{{entrie.title}}</a></td>
+			<td>{{entrie.readed}}</td>
+			<td>{{entrie.pop}}</td>
+			<td>{{entrie.created|date:"Y-m-d"}}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+<div class="pagination-holder clearfix">
+		<div id="light-pagination" class="pagination"></div>
+</div>
+
+<script type="text/javascript" src="{% static 'js/jquery-1.10.2.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/pagination/jquery.simplePagination.js' %}" /></script>
+<script type="text/javascript">
+
+function clickPage(pageNum){
+	console.log(pageNum);
+};
+
+$('#light-pagination').pagination({
+	pages: {{broadCnt}},
+	currentPage: {{broadNum}} + 1,
+	cssStyle: 'light-theme'
+});
+
+$('#broadTable a').click(function(){
+	console.log($(this).attr('class'));
+});
+
+</script>
+{% endblock %}

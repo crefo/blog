@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+{% block content %}
+{% load staticfiles %}
+<link rel="stylesheet" href="{% static 'css/blog_bass.css' %}" />
+<link rel="stylesheet" href="{% static 'css/base.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/pagination/simplePagination.css' %}" />
+<div id="wrap">
+<div id="container">
+	<div id="l_side">
+		<div id="c_list" class="cnt_box_style" >
+			<h2 class="cnt_box_title"> {{keyword}} <span><a href="#">목록보기</a></span></h2>
+			<div class="cnt_box_cnt">
+				<table cellspacing="0" cellpadding="0">
+					<caption class='hide'> {{keyword}} 목록 보기</caption>
+					<colgroup>
+						<col width="22"/>
+						<col />
+						<col width="50"/>
+						<col width="50"/>
+						<col width="78"/>
+					</colgroup>
+					<thead>
+						<tr>
+							<th scope="col">No.</th>
+							<th scope="col">포스트 제목</th>
+							<th scope="col">Readed</th>
+							<th scope="col">추천</th>
+							<th scope="col">날짜</th>
+						</tr>
+					</thead>
+					<tbody id="broadTable">
+						<tr>
+							<td>num</td>
+							<td><a href="#" class=''>title</a></td>
+							<td>readed</td>
+							<td>pop</td>
+							<td>created</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="pagination-holder clearfix">
+						<div id="light-pagination" class="pagination"></div>
+				</div>
+			</div>
+		</div>
+		<div id="cnt" class="cnt_box_style" >
+			<h2 class="cnt_box_title">title<span><a href="#">열기</a></span></h2>
+			<div class="cnt_box_cnt">
+				<div class="cnt_cnt">{{context}}</div>
+			</div>
+		</div>
+		<div id="cnt_comment" class="cnt_box_style" >
+			<h2 class="cnt_box_title">comment<span><a href="#">열기</a></span></h2>
+			<div class="cnt_box_cnt">
+				<p>comment</p>
+				<p>comment</p>
+				<p>comment</p>
+				<p>comment</p>
+				<p>comment</p>
+				<p>comment</p>
+			</div>
+		</div>
+	</div><!-- l_side -->
+	<div id="r_side">
+		<div id="profile" class="cnt_box_style">
+			<h2 class="cnt_box_title">Profile <span><a href="#">열기</a></span></h2>
+			<div class="cnt_box_cnt">
+				<p class="img"><a href="#"><img src="{% static 'images/profile00.gif' %}" alt="profile 
+				image" /></a></p>
+				<p>Stupid Programmer</p>
+				<p class="txt_r">GS Son</p>
+			</div>
+		</div>
+		<div id="category" class="cnt_box_style">
+			<h2 class="cnt_box_title">category <span><a href="#">열기</a></span></h2>
+			<div class="cnt_box_cnt">
+				<ul>
+					<li><a href="#">math1</a></li>
+					<li><a href="#">math2</a></li>
+					<li><a href="#">math3</a></li>
+					<li><a href="#">math4</a></li>
+				</ul>
+			</div>
+		</div>
+		<div id="pop_list" class="cnt_box_style">
+			<h2 class="cnt_box_title">Popular posts <span><a href="#">열기</a></span></h2>
+			<div class="cnt_box_cnt">
+				<ul>
+					<li><a href="#">Popular posts1</a></li>
+					<li><a href="#">Popular posts2</a></li>
+					<li><a href="#">Popular posts3</a></li>
+					<li><a href="#">Popular posts4</a></li>
+				</ul>
+			</div>
+		</div>
+	</div><!-- r_side -->
+</div><!-- container -->
+
+<script type="text/javascript" src="{% static 'js/jquery-1.10.2.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/pagination/jquery.simplePagination.js' %}" /></script>
+<script type="text/javascript">
+var ctg, subctg;
+
+
+function clickPage(pageNum){
+	console.log(pageNum);
+	initBroad(pageNum);
+	return false;
+};
+
+$('#light-pagination').pagination({
+	pages:5,
+	currentPage: 1,
+	cssStyle: 'light-theme'
+});
+
+$('#broadTable a').click(function(){
+	//console.log($(this).attr('class'));
+});
+
+function initBroad(pageNum){
+        $.ajax({
+            type: "GET",
+            url: "/blog/keyword/{{keyword}}/"+ pageNum + "/",
+            success: function(data) {
+				var content = '';
+				if (data == null){
+					return false;
+				}
+				var broad = data['broad'];
+				$('#light-pagination').pagination({pages:data['broadCnt'], currentPage: pageNum});
+
+				for(i = 0; i < broad.length; i++){
+					content += '<tr>';
+					content += '<td>' + broad[i].num + '</td>'
+					content += '<td><a href="/blog/page/' +broad[i].id +'/{{ctg}}/{{subctg}}/{{searchWord}}/" class="">' + broad[i].title + '</a></td>'
+					content += "<td>" + broad[i].readed + "</td>"
+					content += "<td>" + broad[i].pop + "</td>"
+					content += "<td>" + broad[i].created + "</td>"
+					content += '</tr>';
+				}
+				
+				console.log( content);
+				$("#broadTable").html(content);
+				
+			}
+        });
+}
+
+$(document).ready(function() {
+	ctg ="{{ctg}}";
+	subctg = "{{subctg}}";
+	console.log("ctg = " + ctg);
+	console.log("subctg = " + subctg);
+
+	// Broad
+    // AJAX GET
+	initBroad(1);
+	
+});
+</script>
+{% endblock %}

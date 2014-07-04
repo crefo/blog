@@ -1,0 +1,63 @@
+<!doctype html>
+{% load staticfiles %}
+<html>
+    <head>
+		<meta name="keywords" content="crefo python programing" />
+		<meta name="description" content="" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" href="{% static 'css/base.css' %}" />
+		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+		<title>CreFo Blog</title>
+     </head>
+<body class="site_width">
+	<dl class="hide">
+	<dt>skip menu</dt>
+	<dd><a href="#container">go to Content</a></dd>
+	</dl>
+	<div id="header">
+		<h1>
+			<a href="main.html">CreFo Blog</a>
+			<p>Programming test area</p>
+		</h1>
+		<dl id="util_menu">
+			<dt class="hide">Util Menu</dt>
+			<dd>
+				<ul>
+					<li><a href="#">log in</a></li>
+				</ul>
+			</dd>
+		</dl>
+		<dl id="gnb">
+			<dt class="hide">Global navigation bar</dt>
+			<dd>
+				<ul>
+					<li><a href="#">Introduction</a></li>
+					<li><a href="#">Blog</a></li>
+					<li><a href="#">Comics</a></li>
+					<li><a href="#">Tags</a></li>
+					<li><a href="#">Project</a></li>
+					<li>
+						<form action="#" id="search_f" class="search_f" method="get">
+							<fieldset>
+								<legend class="hide">content search</legend>
+								<p><img src="{% static 'images/serach_icon.png' %}" alt="search icon" /><label 
+								for="search_word" class="hide">search word</label><input type="text" 
+								id="search_word" name="search_word" /></p>
+							</fieldset>
+						</form>
+					</li>
+				</ul>
+			</dd>
+		</dl>
+	</div><!-- header -->
+	{% block content %}
+	{% endblock %}
+	<div id="footer">
+		<h2 class="hide">footer</h3>
+		<address class="txt_r">
+			<p>Copyright 2014 Son Gyu-Sung. All right reserved. <span>email to <a href="mailto:gosgs13@gmail.com">gosgs13@gmail.com</a></span></p>
+		</address>			
+	</div><!-- footer -->
+</div><!-- wrap -->
+</body>
+</html>

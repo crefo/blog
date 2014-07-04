@@ -1,0 +1,29 @@
+{% if with_layout %}{% include 'layout/header.html' %}{% endif %}
+<div>
+	{% if comments|length %}
+	<ul>
+	{% for comment in comments %}
+		<li>
+			<p>{{comment.name}}님이 {{comment.created}}에 남긴 댓글</p>
+
+			<form method="POST" action="/blog/del/comment" id="comment_del_f">
+				{% csrf_token %}
+				<fieldset>
+					<legend class='hide'>댓글 삭제하기</legend>
+					<input type="hidden" name="comment_id" value="{{comment.id}}"/>
+					<p>
+						<label for="comment_del_pwd">비밀번호</label>
+						<input type="password" id="comment_del_pwd" name="comment_del_pwd" />
+						<input type="submit" value="삭제하기"/>
+					</p>
+				</fieldset>
+			</form>
+
+		</li>
+	{% endfor%}
+	</ul>
+	{% else %}
+	<p>댓글이 없습니다</p>
+	{% endif %}
+</div>
+{% include 'comment_form.html' %}
